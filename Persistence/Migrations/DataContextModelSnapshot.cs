@@ -48,33 +48,36 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Values");
+                    b.ToTable("Owners");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 5,
-                            Adress = "Adres1",
-                            Email = "Email1",
-                            Name = "naam1",
-                            PhoneNumber = "telefoonnummer1",
-                            VacationAdress = "Vakantieadres1",
-                            ValidInfo = true,
-                            created_at = new DateTime(2020, 9, 7, 11, 48, 41, 373, DateTimeKind.Local).AddTicks(2440),
-                            updated_at = new DateTime(2020, 9, 7, 11, 48, 41, 375, DateTimeKind.Local).AddTicks(4379)
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Adress = "Adres2",
-                            Email = "Email2",
-                            Name = "naam2",
-                            PhoneNumber = "telefoonnummer2",
-                            VacationAdress = "Vakantieadres2",
-                            ValidInfo = true,
-                            created_at = new DateTime(2020, 9, 7, 11, 48, 41, 375, DateTimeKind.Local).AddTicks(4814),
-                            updated_at = new DateTime(2020, 9, 7, 11, 48, 41, 375, DateTimeKind.Local).AddTicks(4837)
-                        });
+            modelBuilder.Entity("Domain.Registration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("OwnerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("RegistrationNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Validation")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Registrations");
+                });
+
+            modelBuilder.Entity("Domain.Registration", b =>
+                {
+                    b.HasOne("Domain.Owner", "Owner")
+                        .WithMany("Registrations")
+                        .HasForeignKey("OwnerId");
                 });
 #pragma warning restore 612, 618
         }

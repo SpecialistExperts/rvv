@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -15,5 +16,6 @@ namespace Domain
         public bool ValidInfo {get; set;}
         public DateTime created_at {get; set;}
         public DateTime updated_at {get; set;}
+        public ICollection<Registration> Registrations {get; set;}
     }
 }

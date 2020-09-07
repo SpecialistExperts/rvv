@@ -9,8 +9,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200907094242_SeedOwners")]
-    partial class SeedOwners
+    [Migration("20200907122601_Seeds")]
+    partial class Seeds
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,35 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Owners");
+                });
+
+            modelBuilder.Entity("Domain.Registration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("OwnerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("RegistrationNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Validation")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Registrations");
+                });
+
+            modelBuilder.Entity("Domain.Registration", b =>
+                {
+                    b.HasOne("Domain.Owner", "Owner")
+                        .WithMany("Registrations")
+                        .HasForeignKey("OwnerId");
                 });
 #pragma warning restore 612, 618
         }
