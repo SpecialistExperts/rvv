@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4YVgTK0C5pktANMem9uFA3Jcxtn7vcOo+eYgXxa8A3d9txxrRWGkjZq1sIpCcBpmsZa7AsW0P56yd+6qOQNCcQ==",
+  "dgSpecHash": "WcBqmP0J8pu7c+SJRcVDTEfyGEHH3NKybTnY7ZN7UMNeqPLvvt+HYAHnGIsUjkx473FOzc6UG3fQeVjtFUIKKw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\API\\API.csproj",
+  "projectFilePath": "C:\\Work\\RVV\\rvv\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wvanson\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.7\\microsoft.aspnetcore.jsonpatch.3.1.7.nupkg.sha512",
     "C:\\Users\\wvanson\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.7\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.7.nupkg.sha512",
@@ -32,6 +32,7 @@
     "C:\\Users\\wvanson\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.7\\microsoft.extensions.primitives.3.1.7.nupkg.sha512",
     "C:\\Users\\wvanson\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\wvanson\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\wvanson\\.nuget\\packages\\seriesone.core\\1.0.8\\seriesone.core.1.0.8.nupkg.sha512",
     "C:\\Users\\wvanson\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.2\\sqlitepclraw.bundle_e_sqlite3.2.0.2.nupkg.sha512",
     "C:\\Users\\wvanson\\.nuget\\packages\\sqlitepclraw.core\\2.0.2\\sqlitepclraw.core.2.0.2.nupkg.sha512",
     "C:\\Users\\wvanson\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.2\\sqlitepclraw.lib.e_sqlite3.2.0.2.nupkg.sha512",

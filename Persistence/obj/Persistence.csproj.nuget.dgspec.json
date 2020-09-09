@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Persistence\\Persistence.csproj": {}
+    "C:\\Work\\RVV\\rvv\\Persistence\\Persistence.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Domain\\Domain.csproj": {
+    "C:\\Work\\RVV\\rvv\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Work\\RVV\\rvv\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Work\\RVV\\rvv\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\wvanson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Domain\\obj\\",
+        "outputPath": "C:\\Work\\RVV\\rvv\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wvanson\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,14 +59,14 @@
         }
       }
     },
-    "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Persistence\\Persistence.csproj": {
+    "C:\\Work\\RVV\\rvv\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Work\\RVV\\rvv\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Persistence\\Persistence.csproj",
+        "projectPath": "C:\\Work\\RVV\\rvv\\Persistence\\Persistence.csproj",
         "packagesPath": "C:\\Users\\wvanson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Persistence\\obj\\",
+        "outputPath": "C:\\Work\\RVV\\rvv\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wvanson\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -82,8 +82,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\wvanson\\Documents\\Projecten\\RVV\\rvv\\Domain\\Domain.csproj"
+              "C:\\Work\\RVV\\rvv\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Work\\RVV\\rvv\\Domain\\Domain.csproj"
               }
             }
           }

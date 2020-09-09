@@ -8,6 +8,20 @@ namespace Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Gemeentes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Code = table.Column<string>(nullable: true),
+                    GemeenteNaam = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gemeentes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Owners",
                 columns: table => new
                 {
@@ -20,7 +34,8 @@ namespace Persistence.Migrations
                     PhoneNumber = table.Column<string>(nullable: true),
                     ValidInfo = table.Column<bool>(nullable: false),
                     created_at = table.Column<DateTime>(nullable: false),
-                    updated_at = table.Column<DateTime>(nullable: false)
+                    updated_at = table.Column<DateTime>(nullable: false),
+                    Gemeente = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,6 +63,16 @@ namespace Persistence.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Gemeentes",
+                columns: new[] { "Id", "Code", "GemeenteNaam" },
+                values: new object[] { 1, "0503", "Delft" });
+
+            migrationBuilder.InsertData(
+                table: "Gemeentes",
+                columns: new[] { "Id", "Code", "GemeenteNaam" },
+                values: new object[] { 2, "0599", "Rotterdam" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Registrations_OwnerId",
                 table: "Registrations",
@@ -56,6 +81,9 @@ namespace Persistence.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Gemeentes");
+
             migrationBuilder.DropTable(
                 name: "Registrations");
 

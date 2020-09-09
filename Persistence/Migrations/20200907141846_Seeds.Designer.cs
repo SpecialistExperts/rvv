@@ -9,7 +9,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200907122601_Seeds")]
+    [Migration("20200907141846_Seeds")]
     partial class Seeds
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,6 +17,37 @@ namespace Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.7");
+
+            modelBuilder.Entity("Domain.Gemeente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("GemeenteNaam")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Gemeentes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "0503",
+                            GemeenteNaam = "Delft"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "0599",
+                            GemeenteNaam = "Rotterdam"
+                        });
+                });
 
             modelBuilder.Entity("Domain.Owner", b =>
                 {
@@ -28,6 +59,9 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gemeente")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")

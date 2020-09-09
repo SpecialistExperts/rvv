@@ -16,6 +16,37 @@ namespace Persistence.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.7");
 
+            modelBuilder.Entity("Domain.Gemeente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("GemeenteNaam")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Gemeentes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "0503",
+                            GemeenteNaam = "Delft"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "0599",
+                            GemeenteNaam = "Rotterdam"
+                        });
+                });
+
             modelBuilder.Entity("Domain.Owner", b =>
                 {
                     b.Property<int>("Id")
@@ -26,6 +57,9 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gemeente")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")

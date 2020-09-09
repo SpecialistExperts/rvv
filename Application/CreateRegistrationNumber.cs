@@ -24,5 +24,15 @@ namespace Application
             registrations.Add(registration);
             return registrations;
         }
+
+        // public string CreateNumber(string gemeente){
+        //     char[] array = gemeente.ToCharArray();
+
+        //     var instance = new FormatNumber();
+        //     string registrationnumber = instance.GetRandomHexNumber(3) + array[0] + " " + instance.GetRandomHexNumber(3) + array[1] +" " +  
+        //                                 instance.GetRandomHexNumber(1) + array[2] + instance.GetRandomHexNumber(2) + " " + array[3] + 
+        //                                 instance.GetRandomHexNumber(3);
+        //     return registrationnumber;
+        // }
     }
 }
