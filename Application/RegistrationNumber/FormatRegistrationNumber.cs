@@ -24,22 +24,23 @@ namespace Application
     {
 
 
-        public string FormatNumber(string encryption, string municipality)
+        public static string FormatNumber(string encryption, string municipality)
         {
+            // create variables
             char[] municipalityArray = municipality.ToCharArray();
             int[] positions = {3, 7, 9, 12};
-
             List<char> data = new List<char>();
-            data.AddRange(encryption);
-            data.Insert(3, municipalityArray[0]);
-            data.Insert(7, municipalityArray[1]);
-            data.Insert(9, municipalityArray[2]);
-            data.Insert(12, municipalityArray[3]);
-            var resFAKE = StringExtensions.SplitInParts(new string(data.ToArray()), 4);
+            data.AddRange(encryption);            
+
+            for (int i =0; i<positions.Length; i++){
+                data.Insert(positions[i], municipality[i]);
+            }
+
+            var resParts = StringExtensions.SplitInParts(new string(data.ToArray()), 4);
             string res = "";
-            foreach (var item in resFAKE)
+            foreach (var item in resParts)
             {
-                res += item + "     ";
+                res += item + " ";
             }
 
             return res;

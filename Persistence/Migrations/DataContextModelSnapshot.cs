@@ -56,6 +56,9 @@ namespace Persistence.Migrations
                     b.Property<string>("Adress")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("BSN")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
@@ -91,7 +94,10 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("OwnerId")
+                    b.Property<string>("Adress")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("OwnerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("RegistrationNumber")
@@ -111,7 +117,9 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Owner", "Owner")
                         .WithMany("Registrations")
-                        .HasForeignKey("OwnerId");
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -6,11 +6,11 @@ namespace Application.HesEncryption
     using Core.Security.Cryptography;
     using DGK;
 
-    public class HesEncryption
+    public class HesEncryptions
     {
         private const int BitLength = 37;
 
-        public string Encrypt(long input)
+        public string Encrypt( string input)
         {
             // var dgk = new DGK(_publicKey, _privateKey, new DecryptionParameters());
             //var dgk = new DGK(new SecurityParameters { k = 54, t = 9, l = 8}, new DecryptionParameters{dms = 4});
@@ -18,7 +18,7 @@ namespace Application.HesEncryption
             var dgk = new DGK(new SecurityParameters { k = 1024, t = 160, l = 16 },
                               new DecryptionParameters { dms = 4 });
 
-            var requirementBits = Convert.ToString(input, 2).PadLeft(BitLength, '0').Select(bit => int.Parse((string)bit.ToString())).ToArray();
+            var requirementBits = input.PadLeft(BitLength, '0').Select(bit => int.Parse((string)bit.ToString())).ToArray();
 
             var encryptedRequirementBits = requirementBits.Select(bit => dgk.Encrypt(bit)).ToArray();
 

@@ -15,9 +15,10 @@ namespace Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Owner>()
-                .HasMany(a => a.Registrations)
-                .WithOne(b => b.Owner);
+            modelBuilder.Entity<Registration>()
+                .HasOne(a => a.Owner)
+                .WithMany(b => b.Registrations)
+                .HasForeignKey(a => a.OwnerId);
 
             modelBuilder.Entity<Gemeente>().HasData(
                 new Gemeente { Id = 1, Code = "0503", GemeenteNaam = "Delft" },
