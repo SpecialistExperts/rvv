@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class CreateDatabase : Migration
+    public partial class Seeds : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,8 +33,6 @@ namespace Persistence.Migrations
                     VacationAdress = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     ValidInfo = table.Column<bool>(nullable: false),
-                    created_at = table.Column<DateTime>(nullable: false),
-                    updated_at = table.Column<DateTime>(nullable: false),
                     Gemeente = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

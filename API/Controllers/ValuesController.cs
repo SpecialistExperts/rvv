@@ -25,15 +25,13 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public ActionResult<Owner> Get(int id)
         {
-            var owners2 = _context.Owners
+            var owners = _context.Owners
                                     .Where(p => p.Id == id)
                                     .Include(p => p.Registrations)
                                     .FirstOrDefault();
 
-            return Ok(owners2);
+            return Ok(owners);
         }
-
-
 
         // POST api/owners
         [HttpPost]
@@ -43,13 +41,15 @@ namespace API.Controllers
             
             // Check if vacationadress is already registered
             if (_context.Owners.Any(o => o.VacationAdress == owner.VacationAdress)) return Ok("Het vakantieadres is al ingeschreven");
+            
+            // check if user exists --> add extra registration for new VacationAdress
             if (_context.Owners.Any(o => o.Name == owner.Name)){
                 var personExists = _context.Owners.Where(o => o.Name == owner.Name)
                                                     .Include(o => o.Registrations)  
                                                     .FirstOrDefault();
                 var update =  new Application.Owners.DataAccess(_context);  
-                update.AddAdress(personExists, owner.VacationAdress);
-                return Ok(update); 
+                var newAdress = update.AddAdress(personExists, owner.VacationAdress);
+                return Ok(newAdress.Registrations.LastOrDefault().RegistrationNumber); 
             }
 
 
@@ -62,7 +62,7 @@ namespace API.Controllers
                 return BadRequest("Not good sir!!");
             }
 
-            return Ok(owner);
+            return Ok(owner.Registrations.FirstOrDefault().RegistrationNumber);
         }
 
     }

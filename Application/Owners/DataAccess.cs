@@ -13,9 +13,6 @@ namespace Application.Owners
         }
         public async void CreateOwner(Owner owner)
         {
-            // Update created/updated with DateTime
-            owner.created_at = DateTime.Now;
-            owner.updated_at = DateTime.Now;
 
             // Get Gemeentenummer
             var gemeentes = _context.Gemeentes.Where(b => b.GemeenteNaam.Equals(owner.Gemeente)).ToList();
@@ -23,7 +20,7 @@ namespace Application.Owners
 
             // Create registrationnumber    
             var instance = new Application.HesEncryption.HesEncryptions();
-            var encryptedNumber = instance.Encrypt(owner.BSN).Substring(0, 12);
+            var encryptedNumber = instance.Encrypt(owner.BSN).Substring(0, 16);
             var RegistrationNumber = Application.FormatNumbers.FormatNumber(encryptedNumber, gemeente);
 
             // Create registration
@@ -39,10 +36,9 @@ namespace Application.Owners
             await _context.SaveChangesAsync();
         }
 
-        public async void AddAdress(Owner owner, string vacationAdress)
+        public Owner AddAdress(Owner owner, string vacationAdress)
         {   
             // Update created/updated with DateTime
-            owner.updated_at = DateTime.Now;
             owner.VacationAdress = vacationAdress;
 
             // Get Gemeentenummer
@@ -64,7 +60,9 @@ namespace Application.Owners
             // Add data to database
             _context.Registrations.Add(registration);
             _context.Owners.Update(owner);
-            await _context.SaveChangesAsync();
+            _context.SaveChangesAsync();
+
+            return owner;
         }
         
     }

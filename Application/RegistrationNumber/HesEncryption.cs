@@ -30,7 +30,6 @@ namespace Application.HesEncryption
             stream.Position = 0;
 
             var hash = SHA3.CreateKeccak512().ComputeHash(stream);
-
             var hex = Application.BitConverter.ByteArrayToHexViaLookup32(hash);
             return hex;
         }
