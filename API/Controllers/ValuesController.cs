@@ -22,48 +22,59 @@ namespace API.Controllers
         }
 
         // GET api/owners/5
-        [HttpGet("{id}")]
-        public ActionResult<Owner> Get(int id)
+        [HttpGet("{bsn}")]
+        public ActionResult<Owner> Get(string bsn)
         {
-            var owners = _context.Owners
-                                    .Where(p => p.Id == id)
-                                    .Include(p => p.Registrations)
-                                    .FirstOrDefault();
+            try
+            {
+                var encryptedBSN = Application.Encryption.Encryption.Encrypt(bsn);
+                var owners = _context.Owners
+                        .Where(p => p.BSN.Equals(encryptedBSN))
+                        .Include(p => p.Registrations)
+                        .FirstOrDefault();
 
-            return Ok(owners);
+                var instance = new Application.Owners.DataAccess(_context);
+                var decryptedOwner = instance.GetDecrypedOwner(owners);
+
+                return Ok(decryptedOwner);
+            }
+            catch
+            {
+                return Ok("Geen geldig BSN nummer. Probeer een ander BSN nummer");
+            }
         }
 
         // POST api/owners
         [HttpPost]
         public ActionResult<Owner> PostOwner(Owner owner)
         {
-            
-            
+
+
             // Check if vacationadress is already registered
-            if (_context.Owners.Any(o => o.VacationAdress == owner.VacationAdress)) return Ok("Het vakantieadres is al ingeschreven");
-            
+            if (_context.Owners.Any(o => o.AdressToRegister == owner.AdressToRegister)) return Ok("Het vakantieadres is al ingeschreven");
+
             // check if user exists --> add extra registration for new VacationAdress
-            if (_context.Owners.Any(o => o.Name == owner.Name)){
-                var personExists = _context.Owners.Where(o => o.Name == owner.Name)
-                                                    .Include(o => o.Registrations)  
-                                                    .FirstOrDefault();
-                var update =  new Application.Owners.DataAccess(_context);  
-                var newAdress = update.AddAdress(personExists, owner.VacationAdress);
-                return Ok(newAdress.Registrations.LastOrDefault().RegistrationNumber); 
-            }
+            string encryptedBSN = Application.Encryption.Encryption.Encrypt(owner.BSN);
+            // if (_context.Owners.Any(o => o.BSN == encryptedBSN)){
+            //     var personExists = _context.Owners.Where(o => o.BSN == owner.BSN)
+            //                                         .Include(o => o.Registrations)  
+            //                                         .FirstOrDefault();
+            //     var update =  new Application.Owners.DataAccess(_context);  
+            //     var newAdress = update.AddAdress(personExists, owner.VacationAdresses);
+            //     return Ok(newAdress.Registrations.LastOrDefault().RegistrationNumber); 
+            // }
 
-
-            try {
+            try
+            {
                 owner.Registrations = new List<Registration>();
                 var instance = new Application.Owners.DataAccess(_context);
-                instance.CreateOwner(owner);
+                instance.CreateEncrypedOwner(owner);
+                return Ok(owner.Registrations.FirstOrDefault().RegistrationNumber);
             }
-            catch{
+            catch
+            {
                 return BadRequest("Not good sir!!");
             }
-
-            return Ok(owner.Registrations.FirstOrDefault().RegistrationNumber);
         }
-
     }
 }

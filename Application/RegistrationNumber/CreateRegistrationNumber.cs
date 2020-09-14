@@ -21,7 +21,7 @@
             {
                 OwnerId = owner.Id,
                 Owner = owner,
-                Adress = owner.VacationAdress,
+                Adress = owner.AdressToRegister,
                 RegistrationNumber = RegistrationNumber,
                 Validation = owner.ValidInfo
             };

@@ -55,6 +55,9 @@ namespace Persistence.Migrations
                     b.Property<string>("Adress")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("AdressToRegister")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("BSN")
                         .HasColumnType("TEXT");
 
@@ -68,9 +71,6 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("VacationAdress")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("ValidInfo")
