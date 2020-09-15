@@ -8,8 +8,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200914145312_Seeds")]
-    partial class Seeds
+    [Migration("20200915080639_AddNewDatabase")]
+    partial class AddNewDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,9 +55,6 @@ namespace Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Adress")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("AdressToRegister")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("BSN")

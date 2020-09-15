@@ -1,13 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
-using Application;
-using Application.HesEncryption;
+
 
 namespace API.Controllers
 {
@@ -46,29 +43,41 @@ namespace API.Controllers
 
         // POST api/owners
         [HttpPost]
-        public ActionResult<Owner> PostOwner(Owner owner)
+        public ActionResult<Owner> PostOwner(Request request)
         {
-
+            // Create owner object
+            Owner owner = new Owner
+            {
+                Adress = request.Adress,
+                BSN = request.BSN,
+                Email = request.Email,
+                Gemeente = request.Gemeente,
+                Name = request.Name,
+                PhoneNumber = request.PhoneNumber,
+                ValidInfo = request.ValidInfo
+            };
 
             // Check if vacationadress is already registered
-            if (_context.Owners.Any(o => o.AdressToRegister == owner.AdressToRegister)) return Ok("Het vakantieadres is al ingeschreven");
+            string encryptedAdress = Application.Encryption.Encryption.Encrypt(request.AdressToRegister);
+            if (_context.Registrations.Any(o => o.Adress == encryptedAdress)) return Ok("Het vakantieadres is al ingeschreven");
 
             // check if user exists --> add extra registration for new VacationAdress
             string encryptedBSN = Application.Encryption.Encryption.Encrypt(owner.BSN);
-            // if (_context.Owners.Any(o => o.BSN == encryptedBSN)){
-            //     var personExists = _context.Owners.Where(o => o.BSN == owner.BSN)
-            //                                         .Include(o => o.Registrations)  
-            //                                         .FirstOrDefault();
-            //     var update =  new Application.Owners.DataAccess(_context);  
-            //     var newAdress = update.AddAdress(personExists, owner.VacationAdresses);
-            //     return Ok(newAdress.Registrations.LastOrDefault().RegistrationNumber); 
-            // }
+            if (_context.Owners.Any(o => o.BSN == encryptedBSN))
+            {
+                var personExists = _context.Owners.Where(o => o.BSN == encryptedBSN)
+                                                    .Include(o => o.Registrations)
+                                                    .FirstOrDefault();
+                var update = new Application.Owners.DataAccess(_context);
+                update.AddAdress(personExists, request.AdressToRegister);
+                return Ok(personExists);
+            }
 
             try
             {
                 owner.Registrations = new List<Registration>();
                 var instance = new Application.Owners.DataAccess(_context);
-                instance.CreateEncrypedOwner(owner);
+                instance.CreateEncrypedOwner(owner, request.AdressToRegister);
                 return Ok(owner.Registrations.FirstOrDefault().RegistrationNumber);
             }
             catch

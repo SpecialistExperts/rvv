@@ -1,6 +1,5 @@
 namespace Application.Owners
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Domain;
@@ -14,7 +13,8 @@ namespace Application.Owners
             this._context = context;
         }
 
-        public async void CreateEncrypedOwner(Owner owner){
+        public async void CreateEncrypedOwner(Owner owner, string AdressToRegister)
+        {
 
             // Get Gemeentenummer
             var gemeentes = _context.Gemeentes.Where(b => b.GemeenteNaam.Equals(owner.Gemeente)).ToList();
@@ -26,21 +26,21 @@ namespace Application.Owners
             var RegistrationNumber = Application.FormatNumbers.FormatNumber(encryptedNumber, gemeente);
             var encryptedRegistrationNumber = Application.Encryption.Encryption.Encrypt(RegistrationNumber);
 
-            Owner EncryptedOwner = new Owner {
+            Owner EncryptedOwner = new Owner
+            {
                 Adress = Application.Encryption.Encryption.Encrypt(owner.Adress),
                 BSN = Application.Encryption.Encryption.Encrypt(owner.BSN),
                 Email = Application.Encryption.Encryption.Encrypt(owner.Email),
                 Gemeente = Application.Encryption.Encryption.Encrypt(owner.Gemeente),
                 Name = Application.Encryption.Encryption.Encrypt(owner.Name),
                 PhoneNumber = Application.Encryption.Encryption.Encrypt(owner.PhoneNumber),
-                AdressToRegister = Application.Encryption.Encryption.Encrypt(owner.AdressToRegister),
                 ValidInfo = owner.ValidInfo,
                 Registrations = owner.Registrations
             };
 
             // Create registration
-            var randomNumberInstance = new Application.RandomNumber.RandomNumbers();
-            var registration = randomNumberInstance.CreateRegistration(EncryptedOwner, RegistrationNumber);
+            var randomNumberInstance = new Application.RegisterRegistration.RegisterRegistration();
+            var registration = randomNumberInstance.CreateRegistration(EncryptedOwner, RegistrationNumber, AdressToRegister);
 
             // Add encrypted registration to encrypted owner
             EncryptedOwner.Registrations.Append(registration);
@@ -51,7 +51,8 @@ namespace Application.Owners
             await _context.SaveChangesAsync();
         }
 
-        public Owner GetDecrypedOwner(Owner owner){
+        public Owner GetDecrypedOwner(Owner owner)
+        {
             Owner DecryptedOwner = new Owner
             {
                 Adress = Application.Encryption.Encryption.Decrypt(owner.Adress),
@@ -60,22 +61,23 @@ namespace Application.Owners
                 Gemeente = Application.Encryption.Encryption.Decrypt(owner.Gemeente),
                 Name = Application.Encryption.Encryption.Decrypt(owner.Name),
                 PhoneNumber = Application.Encryption.Encryption.Decrypt(owner.PhoneNumber),
-                AdressToRegister = Application.Encryption.Encryption.Decrypt(owner.AdressToRegister),
                 ValidInfo = owner.ValidInfo,
                 Registrations = new List<Registration>()
             };
 
             // iterate through registrations to encrypt all registrations
-            foreach(var registration in owner.Registrations){
+            foreach (var registration in owner.Registrations)
+            {
                 Registration decryptedRegistration = GetDecryptedRegistration(registration, DecryptedOwner);
                 DecryptedOwner.Registrations.Add(decryptedRegistration);
             }
 
-            
+
             return DecryptedOwner;
         }
 
-        public Registration GetDecryptedRegistration(Registration registration, Owner decryptedOwner){
+        public Registration GetDecryptedRegistration(Registration registration, Owner decryptedOwner)
+        {
             Registration decryptedRegistration = new Registration
             {
                 Adress = Application.Encryption.Encryption.Decrypt(registration.Adress),
@@ -88,9 +90,32 @@ namespace Application.Owners
             return decryptedRegistration;
         }
 
-        public Owner AddAdress(Owner owner){
+        public void AddAdress(Owner owner, string AdressToAdd)
+        {
+            var Encryptioninstance = new Application.HesEncryption.HesEncryptions();
+            var Registrationinstance = new Application.RegisterRegistration.RegisterRegistration();
 
-            return null;
+
+            // Get Gemeentenummer
+            var decryptedgemeente = Application.Encryption.Encryption.Decrypt(owner.Gemeente);
+            var gemeentes = _context.Gemeentes.Where(b => b.GemeenteNaam.Equals(decryptedgemeente)).ToList();
+            var gemeente = gemeentes.FirstOrDefault().Code;
+
+            // Create registrationnumber
+            var BSN = Application.Encryption.Encryption.Decrypt(owner.BSN);
+            var encryptedNumber = Encryptioninstance.Encrypt(BSN).Substring(0, 16);
+            var RegistrationNumber = Application.FormatNumbers.FormatNumber(encryptedNumber, gemeente);
+            var encryptedRegistrationNumber = Application.Encryption.Encryption.Encrypt(RegistrationNumber);
+
+            // Create new registration
+            Registration registration = Registrationinstance.CreateRegistration(owner, RegistrationNumber, AdressToAdd);
+
+            owner.Registrations.Append(registration);
+
+            // Add data to database
+            _context.Registrations.Add(registration);
+            _context.Owners.Update(owner);
+            _context.SaveChangesAsync();
         }
 
     }

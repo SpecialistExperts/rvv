@@ -2,7 +2,7 @@
 
 namespace Persistence.Migrations
 {
-    public partial class Seeds : Migration
+    public partial class AddDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,6 @@ namespace Persistence.Migrations
                     BSN = table.Column<string>(nullable: true),
                     Adress = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    AdressToRegister = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     ValidInfo = table.Column<bool>(nullable: false),
                     Gemeente = table.Column<string>(nullable: true)

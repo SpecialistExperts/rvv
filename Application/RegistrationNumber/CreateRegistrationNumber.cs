@@ -1,27 +1,17 @@
-﻿namespace Application.RandomNumber
+﻿namespace Application.RegisterRegistration
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Domain;
 
-    public class RandomNumbers
+    public class RegisterRegistration
     {
-        public string RandomNumberGenerator()
-        {
-            Random random = new Random();
-            int RandomNumber = random.Next(0, 1000);
 
-            return RandomNumber.ToString();
-        }
-
-        public Registration CreateRegistration(Owner owner, string RegistrationNumber)
+        public Registration CreateRegistration(Owner owner, string RegistrationNumber, string AdressToRegister)
         {
             var registration = new Registration
             {
                 OwnerId = owner.Id,
                 Owner = owner,
-                Adress = owner.AdressToRegister,
+                Adress = Application.Encryption.Encryption.Encrypt(AdressToRegister),
                 RegistrationNumber = RegistrationNumber,
                 Validation = owner.ValidInfo
             };

@@ -1,6 +1,5 @@
 namespace Application.HesEncryption
 {
-    using System;
     using System.IO;
     using System.Linq;
     using Core.Security.Cryptography;
