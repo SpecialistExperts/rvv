@@ -13,7 +13,7 @@ namespace Application.Owners
             this._context = context;
         }
 
-        public async void CreateEncrypedOwner(Owner owner, string AdressToRegister)
+        public void CreateEncrypedOwner(Owner owner, string AdressToRegister)
         {
 
             // Get Gemeentenummer
@@ -48,7 +48,7 @@ namespace Application.Owners
             // Add data to database
             _context.Registrations.Add(registration);
             _context.Owners.Add(EncryptedOwner);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public Owner GetDecrypedOwner(Owner owner)
@@ -116,7 +116,7 @@ namespace Application.Owners
             // Add data to database
             _context.Registrations.Add(registration);
             _context.Owners.Update(owner);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
     }

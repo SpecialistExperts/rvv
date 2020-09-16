@@ -70,7 +70,7 @@ namespace API.Controllers
                                                     .FirstOrDefault();
                 var update = new Application.Owners.DataAccess(_context);
                 update.AddAdress(personExists, request.AdressToRegister);
-                return Ok(personExists);
+                return Ok(personExists.Registrations.LastOrDefault().RegistrationNumber);
             }
 
             try
