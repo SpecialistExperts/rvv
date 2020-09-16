@@ -2,7 +2,7 @@
 
 namespace Persistence.Migrations
 {
-    public partial class AddDatabase : Migration
+    public partial class CreateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,7 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(nullable: true),
                     GemeenteNaam = table.Column<string>(nullable: true)
                 },
@@ -25,7 +25,7 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     BSN = table.Column<string>(nullable: true),
                     Adress = table.Column<string>(nullable: true),
@@ -44,7 +44,7 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Adress = table.Column<string>(nullable: true),
                     RegistrationNumber = table.Column<string>(nullable: true),
                     Validation = table.Column<bool>(nullable: false),

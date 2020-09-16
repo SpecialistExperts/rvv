@@ -80,6 +80,7 @@ namespace Application.Owners
         {
             Registration decryptedRegistration = new Registration
             {
+                Id = registration.Id,
                 Adress = Application.Encryption.Encryption.Decrypt(registration.Adress),
                 RegistrationNumber = registration.RegistrationNumber,
                 OwnerId = registration.OwnerId,
