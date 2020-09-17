@@ -1,0 +1,21 @@
+.MuiStepConnector-line{
+    margin-top: 15px;
+}
+
+.MuiStepIcon-root.MuiStepIcon-completed{
+    fill: black;
+}
+.MuiStepIcon-root.MuiStepIcon-active{
+    fill: black;
+    color: black;
+}
+.MuiStepIcon-root.MuiStepIcon-active {
+    color: black !important;
+}
+.MuiStepIcon-root{
+    color: black;
+    fill: black;
+}
+.makeStyles-root-1{
+    margin-top: 100px;
+}

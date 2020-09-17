@@ -1,0 +1,26 @@
+.MuiContainer-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0% !important;
+    margin: 0% !important;
+}
+
+.MuiBox-root-2{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    text-align: start;
+}
+
+img {
+    width: 150px ;
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+h2 {
+    text-align: center;
+}

@@ -1,0 +1,19 @@
+.navbar {
+    background-color: white !important;
+    color: black !important;
+}
+
+img {
+    width: 150px;
+}
+
+.button_div{
+    display:flex;
+    float:right;
+}
+
+.button{
+    max-height: 36px;
+    margin-top: 0 !important;
+    margin-right: 15px !important;
+}
