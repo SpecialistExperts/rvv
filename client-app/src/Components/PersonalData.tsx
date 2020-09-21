@@ -5,27 +5,23 @@ import {
   TextField,
   Theme,
 } from "@material-ui/core";
-import { Person } from "@material-ui/icons";
 import React, { Component } from "react";
 import "./PersonalData.css";
-
-interface IPersonalData {
-  Name: string;
-  Affix: string;
-  Surname: string;
-  Street: string;
-  HouseNumber: number;
-  AddHouseNumber?: number;
-  PostalCode: string;
-  Location: string;
-  TelephoneNumber: string;
-  Email: string;
-  Valid: boolean;
-}
 
 interface IProps {}
 
 interface IState {
+  voornamen : string
+  tussenvoegsel : string
+  achternaam : string
+  straat : string
+  huisnummer : string
+  toevoeging : string
+  postcode : string
+  plaats : string
+  telefoonnummer : string
+  email : string
+  [key: string] : string
 }
 
 
@@ -33,7 +29,16 @@ export class PersonalData extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = { 
-        Affix: ""
+      voornamen : "",
+      tussenvoegsel : "",
+      achternaam : "",
+      straat : "",
+      huisnummer : "",
+      toevoeging : "",
+      postcode : "",
+      plaats : "",
+      telefoonnummer : "",
+      email : ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,8 +46,10 @@ export class PersonalData extends Component<IProps, IState> {
 
   handleChange(e : any){
     var name = e.target.name
-    this.setState({[name]: e.target.value}, () => console.log(this.state));
+    const value = name === 'validinfo' ? e.target.checked : e.target.value
+    this.setState({[name]: value}, () => console.log(this.state));
   } 
+
 
   render() {
     return (
@@ -70,30 +77,59 @@ export class PersonalData extends Component<IProps, IState> {
             name="achternaam"
             onChange={this.handleChange}
           />
-          <TextField id="outlined-basic" label="Straat" variant="outlined" />
+          <TextField 
+            id="outlined-basic" 
+            label="Straat" 
+            variant="outlined" 
+            name="straat"
+            onChange={this.handleChange}/>
           <TextField
             id="outlined-basic"
             label="Huisnummer"
             variant="outlined"
+            name="huisnummer"
+            onChange={this.handleChange}
           />
           <TextField
             id="outlined-basic"
             label="Toevoeging"
             variant="outlined"
+            name="toevoeging"
+            onChange={this.handleChange}
           />
-          <TextField id="outlined-basic" label="Postcode" variant="outlined" />
-          <TextField id="outlined-basic" label="Plaats" variant="outlined" />
+          <TextField 
+            id="outlined-basic" 
+            label="Postcode" 
+            variant="outlined"
+            name="postcode"
+            onChange={this.handleChange} />
+            
+          <TextField 
+            id="outlined-basic" 
+            label="Plaats" 
+            variant="outlined"
+            name="plaats"
+            onChange={this.handleChange} />
           <TextField
             id="outlined-basic"
             label="Telefoonnummer"
             variant="outlined"
+            name="telefoonnummer"
+            onChange={this.handleChange}
           />
-          <TextField id="outlined-basic" label="E-mail" variant="outlined" />
+          <TextField 
+            id="outlined-basic" 
+            label="E-mail" 
+            variant="outlined"
+            name="email"
+            onChange={this.handleChange} />
           <div className="checkbox_div">
             <Checkbox
               color="default"
               inputProps={{ "aria-label": "checkbox with default color" }}
-            />{" "}
+              name="validinfo"
+              onChange={this.handleChange}
+            />
             Gegevens zijn naar waarheid ingevuld
           </div>
         </form>

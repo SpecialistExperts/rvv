@@ -13,6 +13,7 @@
     "@types/node": "^12.12.59",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "axios": "^0.20.0",
     "fontsource-roboto": "^3.0.3",
     "material-ui-popup-state": "^1.6.1",
     "react": "^16.13.1",

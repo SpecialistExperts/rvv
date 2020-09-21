@@ -5,6 +5,8 @@ import logo from "../LogoDelft.png";
 import LanguageOption from "../Components/LanguageOption";
 import { StepperComponent } from "../Components/StepperComponent";
 import { PersonalData} from "../Components/PersonalData";
+import { RentalHouse } from "../Components/RentalHouse";
+import { Rules } from "../Components/Rules";
 
 interface IState {
   activeStep: number;
@@ -31,6 +33,8 @@ class Registration extends Component<IProps, IState> {
   }
 
   handleNext = () => {
+    console.log(this.state.activeStep)
+
     this.setActiveStep(this.state.activeStep + 1);
     console.log(this.PersonalDataRef.current.state);
   };
@@ -48,9 +52,9 @@ class Registration extends Component<IProps, IState> {
       case 0 :
         return (<PersonalData ref={this.PersonalDataRef}/>);
       case 1 : 
-        return (<div> case 1</div>);
+        return (<RentalHouse ref={this.PersonalDataRef}/>);
       case 2 : 
-      return (<div> case 2</div>);
+      return (<Rules ref={this.PersonalDataRef}/>);
       case 3 : 
       return (<div> case 3</div>);
       case 4 : 
@@ -77,7 +81,7 @@ class Registration extends Component<IProps, IState> {
               <div className="button_div">
                 <Button
                 className="button"
-                  disabled={this.state.activeStep == 0}
+                  disabled={this.state.activeStep === 0}
                   variant="contained"
                   color="primary"
                   onClick={this.handleBack}
@@ -86,7 +90,7 @@ class Registration extends Component<IProps, IState> {
                 </Button>
                 <Button
                   className="button"
-                  disabled={this.state.activeStep == 4}
+                  disabled={this.state.activeStep === 4}
                   variant="contained"
                   color="primary"
                   onClick={this.handleNext}
