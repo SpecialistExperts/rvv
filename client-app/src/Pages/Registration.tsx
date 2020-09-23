@@ -4,12 +4,34 @@ import { AppBar, Button, Container, Grid, Toolbar } from "@material-ui/core";
 import logo from "../LogoDelft.png";
 import LanguageOption from "../Components/LanguageOption";
 import { StepperComponent } from "../Components/StepperComponent";
-import { PersonalData} from "../Components/PersonalData";
+import { PersonalData } from "../Components/PersonalData";
 import { RentalHouse } from "../Components/RentalHouse";
 import { Rules } from "../Components/Rules";
+import { Resume } from "../Components/Resume";
+import { GetNumber } from "../Components/GetNumber";
 
 interface IState {
+  knoppie: boolean;
   activeStep: number;
+  personaldata: {
+    voornamen: string;
+    tussenvoegsel: string;
+    achternaam: string;
+    straat: string;
+    huisnummer: string;
+    toevoeging: string;
+    postcode: string;
+    plaats: string;
+    telefoonnummer: string;
+    email: string;
+    checked: boolean
+  };
+  rentaldata: {
+    huisnummer: string;
+    postcode: string;
+    straatnaam: string;
+    plaatsnaam: string;
+  };
 }
 
 interface IProps {
@@ -22,9 +44,31 @@ class Registration extends Component<IProps, IState> {
     super(props);
     this.PersonalDataRef = React.createRef();
     this.state = {
+      knoppie: true,
       activeStep: 0,
+      personaldata: {
+        voornamen: "",
+        tussenvoegsel: "",
+        achternaam: "",
+        straat: "",
+        huisnummer: "",
+        toevoeging: "",
+        postcode: "",
+        plaats: "",
+        telefoonnummer: "",
+        email: "",
+        checked: false
+      },
+      rentaldata: {
+        huisnummer: "",
+        postcode: "",
+        straatnaam: "",
+        plaatsnaam: "",
+      },
     };
 
+    this.knoppieaan = this.knoppieaan.bind(this);
+    this.knoppieuit = this.knoppieuit.bind(this);
     this.setActiveStep = this.setActiveStep.bind(this);
   }
 
@@ -33,10 +77,9 @@ class Registration extends Component<IProps, IState> {
   }
 
   handleNext = () => {
-    console.log(this.state.activeStep)
-
     this.setActiveStep(this.state.activeStep + 1);
-    console.log(this.PersonalDataRef.current.state);
+    this.setState({knoppie : true})
+    this.saveData();
   };
 
   handleBack = () => {
@@ -47,26 +90,95 @@ class Registration extends Component<IProps, IState> {
     this.setActiveStep(0);
   };
 
-  renderSwitch = (x : number) => {
-    switch(x) {
-      case 0 :
-        return (<PersonalData ref={this.PersonalDataRef}/>);
-      case 1 : 
-        return (<RentalHouse ref={this.PersonalDataRef}/>);
-      case 2 : 
-      return (<Rules ref={this.PersonalDataRef}/>);
-      case 3 : 
-      return (<div> case 3</div>);
-      case 4 : 
-      return (<div> case 4</div>);
-    }}
+  saveData() {
+    if (this.state.activeStep === 0)
+      this.setState({ personaldata: this.PersonalDataRef.current.state }, () =>
+        console.log(this.state)
+      );
+    if (this.state.activeStep === 1)
+      this.setState({ rentaldata: this.PersonalDataRef.current.state }, () =>
+        console.log(this.state)
+      );
+  }
+
+  knoppieaan() {
+    this.setState({knoppie: false})
+  }
+
+  knoppieuit() {
+    this.setState({knoppie: true})
+  }
+
+  renderSwitch = (x: number) => {
+    switch (x) {
+      case 0:
+        return (
+          <PersonalData
+            personalData={this.state.personaldata}
+            ref={this.PersonalDataRef}
+            callbackOn={this.knoppieaan}
+            callbackOff={this.knoppieuit}
+            isvalid = {false}
+          />
+        );
+      case 1:
+        return <RentalHouse ref={this.PersonalDataRef} callback={this.knoppieaan}  rentalData={this.state.rentaldata}/>;
+      case 2:
+        return <Rules ref={this.PersonalDataRef} callback={this.knoppieaan}/>;
+      case 3:
+        return (
+          <Resume
+            personaldata={this.state.personaldata}
+            rentaldata={this.state.rentaldata}
+            ref={this.PersonalDataRef}
+            callback={this.knoppieaan}
+          />
+        );
+      case 4:
+        return (
+          <GetNumber
+            personalData={this.state.personaldata}
+            rentaldata={this.state.rentaldata}
+            ref={this.PersonalDataRef}
+          />
+        );
+    }
+  };
 
   render() {
+
+    let renderButtons = () => {
+      if(this.state.activeStep <= 3){
+        return (
+          <div className="button_div">
+                <Button
+                  className="button"
+                  disabled={this.state.activeStep === 0}
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleBack}
+                >
+                  Back
+                </Button>
+                <Button
+                  className="button"
+                  disabled={this.state.activeStep === 4 || this.state.knoppie}
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleNext}
+                >
+                  Next
+                </Button>
+              </div>
+        )
+      }
+    }
+
     return (
       <div className="App">
         <AppBar className="navbar" position="fixed">
           <Toolbar>
-            <img src={logo} />
+            <img src={logo} alt="logo" />
             <LanguageOption />
           </Toolbar>
         </AppBar>
@@ -78,26 +190,7 @@ class Registration extends Component<IProps, IState> {
             </Grid>
             <Grid item xs={9}>
               {this.renderSwitch(this.state.activeStep)}
-              <div className="button_div">
-                <Button
-                className="button"
-                  disabled={this.state.activeStep === 0}
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleBack}
-                >
-                  Back
-                </Button>
-                <Button
-                  className="button"
-                  disabled={this.state.activeStep === 4}
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                >
-                  Next
-                </Button>
-              </div>
+              {renderButtons()}
             </Grid>
           </Grid>
         </Container>

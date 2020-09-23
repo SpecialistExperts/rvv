@@ -1,9 +1,11 @@
-import { Button, Checkbox } from "@material-ui/core";
+import { Checkbox } from "@material-ui/core";
 import React from "react";
 import { Component } from "react";
 import "./Rules.css";
 
-interface IProps {}
+interface IProps {
+  callback : () => void
+}
 
 interface IState {}
 
@@ -36,7 +38,7 @@ export class Rules extends Component<IProps, IState> {
               color="default"
               inputProps={{ "aria-label": "checkbox with default color" }}
               name="validinfo"
-            //   onChange={this.handleChange}
+              onClick={() => this.props.callback()}
             />
             Ik voldoe aan de regels
           </div>
