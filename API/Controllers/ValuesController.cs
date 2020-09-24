@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using API.Filters;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +11,20 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiKeyAuth]
     public class OwnersController : ControllerBase
     {
         private readonly DataContext _context;
         public OwnersController(DataContext context)
         {
             this._context = context;
+        }
+
+        [HttpGet]
+        public ActionResult<string> Sendmail(){
+
+
+            return Ok("yes");
         }
 
         // GET api/owners/5
@@ -76,8 +85,11 @@ namespace API.Controllers
             try
             {
                 owner.Registrations = new List<Registration>();
-                var instance = new Application.Owners.DataAccess(_context);
-                instance.CreateEncrypedOwner(owner, request.AdressToRegister);
+                var datainstance = new Application.Owners.DataAccess(_context);
+                var mailinstance = new Application.mailservice.mailservice();
+                datainstance.CreateEncrypedOwner(owner, request.AdressToRegister);
+                mailinstance.SendMail(owner);
+
                 return Ok(owner.Registrations.FirstOrDefault().RegistrationNumber);
             }
             catch
