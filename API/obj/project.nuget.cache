@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "evBrrW5q8hL1MG65URsbGdPmWJ0DpHadwm+zy7PhYqQqzDx3YgNNLV0CcQz7w+5mCDc2cMHqTA4/YI4a4bZC4w==",
+  "dgSpecHash": "iS0/8vsHYFTd2r+iz/AtY6E44PIOj6Q+5gfZzZmDz6KyzxS+Stek9LgyehJ1XpDocIL2MfYzEvhaedLji5IanQ==",
   "success": true,
   "projectFilePath": "C:\\Work\\RVV\\rvv\\API\\API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\wvanson\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512",
     "C:\\Users\\wvanson\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.8\\microsoft.aspnetcore.cryptography.internal.3.1.8.nupkg.sha512",
     "C:\\Users\\wvanson\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.8\\microsoft.aspnetcore.cryptography.keyderivation.3.1.8.nupkg.sha512",
     "C:\\Users\\wvanson\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
