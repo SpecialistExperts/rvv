@@ -29,6 +29,9 @@
             "projectReferences": {
               "C:\\Work\\RVV\\rvv\\Application\\Application.csproj": {
                 "projectPath": "C:\\Work\\RVV\\rvv\\Application\\Application.csproj"
+              },
+              "C:\\Work\\RVV\\rvv\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Work\\RVV\\rvv\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -43,6 +46,10 @@
         "netcoreapp3.1": {
           "dependencies": {
             "MediatR": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[8.1.0, )"
             },
@@ -136,6 +143,22 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[9.2.2, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "SeriesOne.CORE": {
               "target": "Package",
               "version": "[1.0.8, )"
@@ -199,6 +222,62 @@
               "version": "[3.1.7, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Work\\RVV\\rvv\\Infrastructure\\Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Work\\RVV\\rvv\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\Work\\RVV\\rvv\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\wvanson\\.nuget\\packages\\",
+        "outputPath": "C:\\Work\\RVV\\rvv\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\wvanson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Work\\RVV\\rvv\\Application\\Application.csproj": {
+                "projectPath": "C:\\Work\\RVV\\rvv\\Application\\Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
           "imports": [
             "net461",
             "net462",

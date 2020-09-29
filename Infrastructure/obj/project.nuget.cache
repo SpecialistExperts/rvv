@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C/3WhXCzQh1gt0O4gIhvS0wtT6wjVCQNcBPByULG/Yey5SZSPPCTAkoHR5ua10L3KWS+iBmcsv3B/I6iI05YHA==",
+  "dgSpecHash": "KDqBJDCWobAaqfqlovmoRrPq6GXMUgPfOevogU1Wf/85KDp72OK159mU/kiP26RFP+nh1gcvE0mZ5jmi1xiqsw==",
   "success": true,
-  "projectFilePath": "C:\\Work\\RVV\\rvv\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Work\\RVV\\rvv\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wvanson\\.nuget\\packages\\fluentvalidation\\9.2.2\\fluentvalidation.9.2.2.nupkg.sha512",
     "C:\\Users\\wvanson\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512",

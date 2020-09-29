@@ -1880,6 +1880,25 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Domain": "1.0.0",
+          "FluentValidation": "9.2.2",
+          "MediatR": "8.1.0",
+          "MediatR.Extensions.Microsoft.DependencyInjection": "8.1.0",
+          "Microsoft.AspNetCore.Identity": "2.2.0",
+          "Persistence": "1.0.0",
+          "SeriesOne.CORE": "1.0.8"
+        },
+        "compile": {
+          "bin/placeholder/Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Application.dll": {}
+        }
+      },
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -6578,6 +6597,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Application/1.0.0": {
+      "type": "project",
+      "path": "../Application/Application.csproj",
+      "msbuildProject": "../Application/Application.csproj"
+    },
     "Domain/1.0.0": {
       "type": "project",
       "path": "../Domain/Domain.csproj",
@@ -6591,13 +6615,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Domain >= 1.0.0",
-      "FluentValidation >= 9.2.2",
-      "MediatR >= 8.1.0",
-      "MediatR.Extensions.Microsoft.DependencyInjection >= 8.1.0",
-      "Microsoft.AspNetCore.Identity >= 2.2.0",
-      "Persistence >= 1.0.0",
-      "SeriesOne.CORE >= 1.0.8"
+      "Application >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6606,11 +6624,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Work\\RVV\\rvv\\Application\\Application.csproj",
-      "projectName": "Application",
-      "projectPath": "C:\\Work\\RVV\\rvv\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Work\\RVV\\rvv\\Infrastructure\\Infrastructure.csproj",
+      "projectName": "Infrastructure",
+      "projectPath": "C:\\Work\\RVV\\rvv\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\wvanson\\.nuget\\packages\\",
-      "outputPath": "C:\\Work\\RVV\\rvv\\Application\\obj\\",
+      "outputPath": "C:\\Work\\RVV\\rvv\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\wvanson\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6626,11 +6644,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Work\\RVV\\rvv\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Work\\RVV\\rvv\\Domain\\Domain.csproj"
-            },
-            "C:\\Work\\RVV\\rvv\\Persistence\\Persistence.csproj": {
-              "projectPath": "C:\\Work\\RVV\\rvv\\Persistence\\Persistence.csproj"
+            "C:\\Work\\RVV\\rvv\\Application\\Application.csproj": {
+              "projectPath": "C:\\Work\\RVV\\rvv\\Application\\Application.csproj"
             }
           }
         }
@@ -6643,28 +6658,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "dependencies": {
-          "FluentValidation": {
-            "target": "Package",
-            "version": "[9.2.2, )"
-          },
-          "MediatR": {
-            "target": "Package",
-            "version": "[8.1.0, )"
-          },
-          "MediatR.Extensions.Microsoft.DependencyInjection": {
-            "target": "Package",
-            "version": "[8.1.0, )"
-          },
-          "Microsoft.AspNetCore.Identity": {
-            "target": "Package",
-            "version": "[2.2.0, )"
-          },
-          "SeriesOne.CORE": {
-            "target": "Package",
-            "version": "[1.0.8, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",
