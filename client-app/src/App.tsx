@@ -1,15 +1,14 @@
-import React from "react";
-import "./App.css";
-import { AppBar, Toolbar } from "@material-ui/core";
+import React, { Fragment } from "react";
+import Registration from "./Pages/Registration";
+import {Route } from 'react-router-dom'
+import LoginForm from "./Pages/LoginForm";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <AppBar position="fixed">
-        <Toolbar>test test test</Toolbar>
-      </AppBar>
-      <Toolbar />
-    </div>
+    <Fragment>
+      <Route path='/register' component={Registration}/>
+      <Route path='/login' component={LoginForm}/>
+    </Fragment>
   );
 };
 

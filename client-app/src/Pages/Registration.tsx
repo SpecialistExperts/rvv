@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import "./Registration.css";
 import { AppBar, Button, Container, Grid, Toolbar } from "@material-ui/core";
 import logo from "../LogoDelft.png";
-import LanguageOption from "../Components/LanguageOption";
-import { StepperComponent } from "../Components/StepperComponent";
-import { PersonalData } from "../Components/PersonalData";
-import { RentalHouse } from "../Components/RentalHouse";
-import { Rules } from "../Components/Rules";
-import { Resume } from "../Components/Resume";
-import { GetNumber } from "../Components/GetNumber";
+import LanguageOption from "../Components/Registration/LanguageOption";
+import { StepperComponent } from "../Components/Registration/StepperComponent";
+import { PersonalData } from "../Components/Registration/PersonalData";
+import { RentalHouse } from "../Components/Registration/RentalHouse";
+import { Rules } from "../Components/Registration/Rules";
+import { Resume } from "../Components/Registration/Resume";
+import { GetNumber } from "../Components/Registration/GetNumber";
 
 interface IState {
   knoppie: boolean;
